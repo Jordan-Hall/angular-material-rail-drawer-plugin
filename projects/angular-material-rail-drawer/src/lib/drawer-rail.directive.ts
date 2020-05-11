@@ -51,7 +51,6 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
     this.container = matSideNavContainer || matDrawerContainer;
     this.drawer = sidenav || drawer;
     this.container.hasBackdrop = false;
-    this.container.autosize = true;
   }
 
   public ngOnInit(): void {
@@ -59,6 +58,7 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
     this.openAnimation = this.openAnimation || sidebarAnimationOpenGroup(miniConfig.defaultDuration, this.expandedWidth);
     this.renderer2.setStyle(this.el.nativeElement.querySelector('.mat-drawer-inner-container'), 'overflow', 'hidden');
     this.drawer.closedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
+       this.container.autosize = true;
        const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
        if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
           this.renderer2.setStyle(containerContent, 'marginLeft', this.closeWidth);
@@ -68,10 +68,13 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
        const factory = this.builder.build(this.closeAnimation);
        const player = factory.create(this.el.nativeElement);
        player.play();
-
+       player.onDone(() => {
+        this.container.autosize = false;
+       });
     });
 
     this.drawer.openedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
+      this.container.autosize = true;
       const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
       if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
           this.renderer2.setStyle(containerContent, 'marginLeft', this.expandedWidth);
@@ -81,6 +84,9 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
       const factory = this.builder.build(this.openAnimation);
       const player = factory.create(this.el.nativeElement);
       player.play();
+      player.onDone(() => {
+        this.container.autosize = false;
+      });
     });
 
 
