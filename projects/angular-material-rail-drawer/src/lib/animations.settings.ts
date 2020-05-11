@@ -1,5 +1,4 @@
-import { group, query, animateChild, animate, style, AnimationBuilder } from '@angular/animations';
-import { AnimationStyleMetadata, AnimationGroupMetadata } from '@angular/animations';
+import { group, query, animateChild, animate, style, AnimationStyleMetadata, AnimationGroupMetadata } from '@angular/animations';
 import { miniConfig } from './default.config';
 
 export function sidebarClose(minWidth: string = miniConfig.defaultMinWidth): AnimationStyleMetadata {

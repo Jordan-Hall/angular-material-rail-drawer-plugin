@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Directive, ElementRef, OnInit, OnDestroy, Host, Self, Optional, Renderer2, Input, AfterContentInit } from '@angular/core';
-import { AnimationMetadata, AnimationStyleMetadata, AnimationGroupMetadata, AnimationBuilder } from '@angular/animations';
+import { AnimationMetadata, AnimationBuilder } from '@angular/animations';
 
 import { MatSidenav, MatDrawer, MatSidenavContainer, MatDrawerContainer } from '@angular/material/sidenav';
 
@@ -11,7 +11,9 @@ import { sidebarAnimationCloseGroup, sidebarAnimationOpenGroup  } from './animat
 import {Directionality} from '@angular/cdk/bidi';
 
 @Directive({
+  // tslint:disable-next-line: directive-selector
   selector: 'mat-sidenav[mode="rail"], mat-drawer[mode="rail"]',
+  // tslint:disable-next-line: no-host-metadata-property
   host: {
     '[class.mat-drawer-side]': 'true',
   }
@@ -44,7 +46,7 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
     @Inject(forwardRef(() => MatSidenavContainer)) @Optional() matSideNavContainer: MatSidenavContainer,
     @Inject(forwardRef(() => MatDrawerContainer)) @Optional() matDrawerContainer: MatDrawerContainer,
     @Optional() private _dir: Directionality,
-    
+
   ) {
     this.container = matSideNavContainer || matDrawerContainer;
     this.drawer = sidenav || drawer;
@@ -55,30 +57,23 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
   public ngOnInit(): void {
     this.closeAnimation = this.closeAnimation || sidebarAnimationCloseGroup(miniConfig.defaultDuration, this.closeWidth);
     this.openAnimation = this.openAnimation || sidebarAnimationOpenGroup(miniConfig.defaultDuration, this.expandedWidth);
-
-  
     this.renderer2.setStyle(this.el.nativeElement.querySelector('.mat-drawer-inner-container'), 'overflow', 'hidden');
-
-    
-
-
-
     this.drawer.closedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
        const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-        if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
+       if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
           this.renderer2.setStyle(containerContent, 'marginLeft', this.closeWidth);
         } else {
           this.renderer2.setStyle(containerContent, 'marginRight', this.closeWidth);
         }
-      const factory = this.builder.build(this.closeAnimation);
-      const player = factory.create(this.el.nativeElement);
-      player.play();
-      
+       const factory = this.builder.build(this.closeAnimation);
+       const player = factory.create(this.el.nativeElement);
+       player.play();
+
     });
 
     this.drawer.openedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
       const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-        if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
+      if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
           this.renderer2.setStyle(containerContent, 'marginLeft', this.expandedWidth);
         } else {
           this.renderer2.setStyle(containerContent, 'marginRight', this.expandedWidth);
@@ -88,12 +83,12 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
       player.play();
     });
 
-    
+
   }
 
   ngAfterContentInit() {
      const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-        if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
+     if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
           this.renderer2.setStyle(containerContent, 'marginLeft',  this.closeWidth);
         } else {
           this.renderer2.setStyle(containerContent, 'marginRight',  this.closeWidth);

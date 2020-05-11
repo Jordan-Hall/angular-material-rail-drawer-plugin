@@ -1,0 +1,78 @@
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="rail" opened="true">
+    <mat-nav-list class="dashboard">
+        <a mat-list-item>
+          <mat-icon mat-list-icon >account_circle</mat-icon>
+          <p matLine>Name</p>
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <a mat-list-item>
+						<mat-icon mat-list-icon>inbox</mat-icon>
+						<p matLine>Inbox</p>
+				</a>
+        <a mat-list-item>
+						<mat-icon mat-list-icon>star</mat-icon>
+						<p matLine>Starred</p>
+				</a>
+        <a mat-list-item>
+						<mat-icon mat-list-icon>drafts</mat-icon>
+						<p matLine >Drafts</p>
+				</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z1">
+      <button mat-icon-button id="menu" (click)="appDrawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Mini Variant</span>
+    </mat-toolbar>
+    <div class="container">
+      <h1 style="text-transform: uppercase">
+        Angular Material Navigation drawer — Adding support mode = “Rail” (mini variant behaviour)
+      </h1>
+    <p>Since 2016, the Angular community has been shouting out of a <a href="https://github.com/angular/components/issues/1728" class="cl gt gu gv gw gx" target="_blank" rel="noopener nofollow">mini variant for material design</a>, including this article by <a href="https://medium.com/u/2a8339499ae0?source=post_page-----8f7b107700b3----------------------" class="gy be gt" target="_blank" rel="noopener">Harkirat Singh</a> which you can view here: <a class="cl gt gu gv gw gx" target="_blank" rel="noopener" href="/@harkiratsingh.026/angular-6-mini-variant-drawer-d5326be55dd1">Angular 6 — Mini-Variant Drawer</a>. Unfortunately every version I’ve seen currently uses some form of *ngIf</p>
+    
+    <figure><div><div><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fstackblitz.com%2Fedit%2Fangular-jwbu9k%3Fembed%3D1%26file%3Dsrc%252Fapp%252Fminivariant.component.ts&amp;display_name=StackBlitz&amp;url=https%3A%2F%2Fstackblitz.com%2Fedit%2Fangular-jwbu9k%3Ffile%3Dsrc%252Fapp%252Fminivariant.component.ts&amp;image=https%3A%2F%2Fc.staticblitz.com%2Fassets%2Ficon-664493542621427cc8adae5e8f50d632f87aaa6ea1ce5b01e9a3d05b57940a9f.png&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=stackblitz" allowfullscreen="" frameborder="0" height="400" width="100%" title="angular-jwbu9k - StackBlitz" scrolling="auto"></iframe></div></div></figure>
+    
+    
+    <p>Other solutions include using CSS and setting a min with; however, what all of these solutions are lacking are animation support and straight forward implantation. In late December a client I was working for, wanted to use the official <a href="https://material.angular.io/" target="_blank" rel="noopener nofollow">Angular Material design</a> but also wanted to support a mini variant. At the time, I wrote a prototype using a customer directive called <code>mat-nav-mini.</code></p>
+    
+    <h2>My issues with <code>mat-nav-mini</code> Solution</h2>
+    
+    <p>The implementation was easy. You pick either the drawer or the sidenav drawer and add the custom directive. However, the UI was written abstract and wasn’t using the official <code>mat-sidenav-container.</code> However, I still didn’t like this approach; it felt bulky and still not a “realistic” implementation that the official team my introduce. At the time, I decided to share the result on <a href="https://github.com/angular/components/issues/1728#issuecomment-576750289"  target="_blank" rel="noopener nofollow">Github</a> for people to use as a cleaner implementation to *ngIf.</p>
+    
+    <p>Then the other day, I looked back through the thread on GitHub, and someone called <a href="https://github.com/angular/components/issues/1728#issuecomment-617342659" target="_blank" rel="noopener nofollow">Angelfraga</a> asked to create a working example.</p>
+    
+    <figure><div><div><div><div><img width="100%"  srcset="https://miro.medium.com/max/552/1*jO-d5LA3lHl0lqq3VO8Nzg.png 276w, https://miro.medium.com/max/1104/1*jO-d5LA3lHl0lqq3VO8Nzg.png 552w, https://miro.medium.com/max/1280/1*jO-d5LA3lHl0lqq3VO8Nzg.png 640w, https://miro.medium.com/max/1400/1*jO-d5LA3lHl0lqq3VO8Nzg.png 700w" sizes="700px" role="presentation" src="https://miro.medium.com/max/753/1*jO-d5LA3lHl0lqq3VO8Nzg.png"><noscript><img class="s t u ik ai" src="https://miro.medium.com/max/1506/1*jO-d5LA3lHl0lqq3VO8Nzg.png" width="753" height="229" srcSet="https://miro.medium.com/max/552/1*jO-d5LA3lHl0lqq3VO8Nzg.png 276w, https://miro.medium.com/max/1104/1*jO-d5LA3lHl0lqq3VO8Nzg.png 552w, https://miro.medium.com/max/1280/1*jO-d5LA3lHl0lqq3VO8Nzg.png 640w, https://miro.medium.com/max/1400/1*jO-d5LA3lHl0lqq3VO8Nzg.png 700w" sizes="700px" role="presentation"/></noscript></div></div></div></div></figure>
+    
+    <p>A few more days have passed by, and I decided, I’ll make a working example. However, for the working example, I wanted to make the right implementation that meet my strict objectives</p>
+    
+    <ul class="">
+      <li>They should be no new directive.</li>
+      <li>No extra markup to ensure element was hiding</li>
+      <li>Simple end-user implementation</li>
+      <li>Something that should be relatively easy to migrate if Angular Material get chance to make an official release</li>
+    </ul>
+    
+    <h2>Designing a solution</h2>
+    <p>Material has long last drawn up specs for <a href="https://material.io/components/navigation-rail" target="_blank" rel="noopener nofollow">“Navigation rail.”</a> Inside the Specs they a behaviour usage: “Some apps, such as <a href="https://material.io/design/material-studies/reply" target="_blank" rel="noopener nofollow">Material’s Reply</a>, customize and extend the rail to function as both a rail and a navigation drawer.”</p>
+    
+    
+    <p>The goal is now to create a drawer implementation for a new mode setting <code>mode="rail".</code> Any new implementation should be implementing the existing material drawer component but with <code >mode="rail"</code>.</p>
+    
+    <p>The solution meant no extending drawer component, no CSS solution but somehow adding functionality to “mode” which was an input for both md-drawer and md-sidenav-drawer</p>
+    
+    <h2>Solving the the problem</h2>
+    <p>The first step was determining the first issue to overcome. The design solution requires you to use the mode input with the option of “rail” this was easy to overcome as every <code >@Input()</code>In angular is a simple implementation of the custom directive.</p>
+    
+    <p>The next problem was the SCSS. Looking at the specs for Navigation rail, the drawer would be the same spec as the “side” drawer; this meant we didn’t have to write custom scss file that needed to import. That allowed me to use the “host” property and assign the same class as “side”.</p>
+    <p>After tackling these two issues, after two hours of work, looking through angular code file, I managed to come up with a solution. The solution is a simple directive that needs to include in your module.</p>
+    
+    <p><strong class="gb jq">Result</strong> is the page you are looking at. <a href="https://stackblitz.com/edit/angular-material-mini-variant">View Source</a></p>
+    </div>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
