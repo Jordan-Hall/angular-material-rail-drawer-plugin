@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-material-rail-drawer": [
+        "dist/angular-material-rail-drawer/angular-material-rail-drawer",
+        "dist/angular-material-rail-drawer"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
