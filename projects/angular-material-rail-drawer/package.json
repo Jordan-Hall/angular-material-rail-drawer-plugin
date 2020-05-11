@@ -1,6 +1,15 @@
 {
   "name": "angular-material-rail-drawer",
   "version": "0.0.1",
+  "author": {
+    "name": "Jordan Hall",
+    "email": "Jordan@libertyware.co.uk"
+  },
+  "homepage": "https://medium.com/@LostDeveloper/angular-material-navigation-drawer-adding-support-mode-rail-mini-variant-behaviour-8f7b107700b3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jordan-Hall/angular-material-rail-drawer-plugin"
+  },
   "peerDependencies": {
     "@angular/common": ">= 8.0.0 < 10.0.0",
     "@angular/core": ">= 8.0.0 < 10.0.0",

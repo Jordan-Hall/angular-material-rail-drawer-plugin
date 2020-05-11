@@ -9,6 +9,15 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "author": {
+    "name": "Jordan Hall",
+    "email": "Jordan@libertyware.co.uk"
+  },
+  "homepage": "https://medium.com/@LostDeveloper/angular-material-navigation-drawer-adding-support-mode-rail-mini-variant-behaviour-8f7b107700b3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jordan-Hall/angular-material-rail-drawer-plugin"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.6",
