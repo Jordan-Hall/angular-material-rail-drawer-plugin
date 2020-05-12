@@ -1,5 +1,5 @@
 # Angular Material Rail Drawer Plugin
-
+![(Unnamed workflow)](https://github.com/Jordan-Hall/angular-material-rail-drawer-plugin/workflows/(Unnamed%20workflow)/badge.svg?branch=master)
 Angular Material Navigation drawer — Adding support mode = “Rail” (mini variant behaviour)
 
 Since 2016, the Angular community has been shouting out of a mini variant for material design.
