@@ -1,6 +1,6 @@
 # Angular Material Rail Drawer Plugin
 
-Angular Material Navigation drawer — Adding support mode = “Rail” (mini variant behaviour)
+Angular Material Navigation drawer — Adding support mode = “Rail” (mini variant behaviour) 
 
 Since 2016, the Angular community has been shouting out of a mini variant for material design.
 
