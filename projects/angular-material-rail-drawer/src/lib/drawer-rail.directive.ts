@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Directive, ElementRef, OnInit, OnDestroy, Host, Self, Optional, Renderer2, Input, AfterContentInit } from '@angular/core';
+import { forwardRef, Inject, Directive, ElementRef, OnInit, OnDestroy, Host, Self, Optional, Renderer2, Input, AfterViewInit } from '@angular/core';
 import { AnimationMetadata, AnimationBuilder } from '@angular/animations';
 
 import { MatSidenav, MatDrawer, MatSidenavContainer, MatDrawerContainer } from '@angular/material/sidenav';
@@ -18,7 +18,7 @@ import {Directionality} from '@angular/cdk/bidi';
     '[class.mat-drawer-side]': 'true',
   }
 })
-export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentInit {
+export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit {
 
   public onDestory: Subject<void> = new Subject();
 
@@ -92,7 +92,7 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterContentIn
 
   }
 
-  ngAfterContentInit() {
+  ngAfterViewInit() {
      const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
      if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
           this.renderer2.setStyle(containerContent, 'marginLeft',  this.closeWidth);
