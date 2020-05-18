@@ -1,3 +1,9 @@
+<mat-toolbar color="primary" class="mat-elevation-z1">
+  <button mat-icon-button id="menu" (click)="appDrawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Mini Variant</span>
+</mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #appDrawer mode="rail" opened="true">
     <mat-nav-list class="dashboard">
