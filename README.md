@@ -38,6 +38,11 @@ On top of all the standard Drawer API from google https://material.angular.io/co
 extra note the default anmination time is set to 100ms
 
 
+*Notes:*
+Angular material open state
+
+`Close === mini` & `Opened === expanded`
+
 ## Useful links
 
 Blog post:
