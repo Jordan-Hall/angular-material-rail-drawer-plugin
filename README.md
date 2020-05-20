@@ -25,6 +25,9 @@ This extension adds on an existing `mode` the Material documentation remains the
 
 ## Extra API for rail variant
 
+On top of all the standard Drawer API from google https://material.angular.io/components/sidenav/api. I've added 4 extra API so you have more control over the animation and size.
+
+
 | Input          |   description                           | default                |
 |----------------|:---------------------------------------:|:----------------------:|
 | openAnimation  |  Angular Animation settings for opening | sidebarOpen(maxWidth)  |
