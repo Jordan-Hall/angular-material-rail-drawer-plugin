@@ -22,6 +22,19 @@ component.html
 
 This extension adds on an existing `mode` the Material documentation remains the same.
 
+
+## Extra API for rail variant
+
+| Input          |   description                           | default                |
+|----------------|:---------------------------------------:|:----------------------:|
+| openAnimation  |  Angular Animation settings for opening | sidebarOpen(maxWidth)  |
+| closeAnimation |  Angular Animation settings for closing | sidebarClose(minWidth) |
+| closeWidth     |  min width (small view)                 | "60px"                 |
+| expandedWidth  |  max width for the expanded view        | "200px"                |
+
+extra note the default anmination time is set to 100ms
+
+
 ## Useful links
 
 Blog post:

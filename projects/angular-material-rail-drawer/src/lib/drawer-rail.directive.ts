@@ -26,6 +26,8 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
   private drawer: MatSidenav | MatDrawer;
   private container: MatSidenavContainer | MatDrawerContainer;
 
+  private containerContent: HTMLElement;
+
   @Input()
   public openAnimation: AnimationMetadata | AnimationMetadata[];
 
@@ -46,6 +48,7 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
     @Host() @Self() @Optional() drawer: MatDrawer,
     @Inject(forwardRef(() => MatSidenavContainer)) @Optional() matSideNavContainer: MatSidenavContainer,
     @Inject(forwardRef(() => MatDrawerContainer)) @Optional() matDrawerContainer: MatDrawerContainer,
+    // tslint:disable-next-line: variable-name
     @Optional() private _dir: Directionality,
   ) {
     this.container = matSideNavContainer || matDrawerContainer;
@@ -59,15 +62,10 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
     this.openAnimation = this.openAnimation || sidebarAnimationOpenGroup(miniConfig.defaultDuration, this.expandedWidth);
     this.renderer2.setStyle(this.el.nativeElement.querySelector('.mat-drawer-inner-container'), 'overflow', 'hidden');
     this.drawer.closedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
-       const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-       if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
-          this.renderer2.setStyle(containerContent, 'marginLeft', this.closeWidth);
-        } else {
-          this.renderer2.setStyle(containerContent, 'marginRight', this.closeWidth);
-        }
-       const factory = this.builder.build(this.closeAnimation);
-       const player = factory.create(this.el.nativeElement);
-       player.play();
+      this.correctContentMargin(this.closeWidth);
+      const factory = this.builder.build(this.closeAnimation);
+      const player = factory.create(this.el.nativeElement);
+      player.play();
     });
 
     this.drawer._closedStream.pipe(takeUntil(this.onDestory)).subscribe(() => {
@@ -75,30 +73,27 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
     });
 
     this.drawer.openedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
-      const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-      if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
-          this.renderer2.setStyle(containerContent, 'marginLeft', this.expandedWidth);
-        } else {
-          this.renderer2.setStyle(containerContent, 'marginRight', this.expandedWidth);
-        }
+      this.correctContentMargin( this.expandedWidth);
       const factory = this.builder.build(this.openAnimation);
       const player = factory.create(this.el.nativeElement);
       player.play();
     });
-
-
   }
 
   ngAfterViewInit() {
     if (this.drawer.opened) {
-      const containerContent = this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-      if (this.drawer.position != 'end' || this._dir && this._dir.value != 'rtl') {
-            this.renderer2.setStyle(containerContent, 'marginLeft',  this.closeWidth);
-          } else {
-            this.renderer2.setStyle(containerContent, 'marginRight',  this.closeWidth);
-          }
+      this.correctContentMargin(this.closeWidth);
     }
+  }
 
+  private correctContentMargin(width: string) {
+    this.containerContent = this.containerContent ? this.containerContent : this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
+    if ((this.drawer.position !== 'end' && this._dir && this._dir.value !== 'rtl')
+        || (this.drawer.position === 'end' && this._dir && this._dir.value === 'rtl')) {
+      this.renderer2.setStyle(this.containerContent, 'marginLeft',  width);
+    } else {
+      this.renderer2.setStyle(this.containerContent, 'marginRight',  width);
+    }
   }
 
   public ngOnDestroy(): void {
