@@ -62,10 +62,7 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
     this.openAnimation = this.openAnimation || sidebarAnimationOpenGroup(miniConfig.defaultDuration, this.expandedWidth);
     this.renderer2.setStyle(this.el.nativeElement.querySelector('.mat-drawer-inner-container'), 'overflow', 'hidden');
     this.drawer.closedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
-      this.correctContentMargin(this.closeWidth);
-      const factory = this.builder.build(this.closeAnimation);
-      const player = factory.create(this.el.nativeElement);
-      player.play();
+      this.closeMenu();
     });
 
     this.drawer._closedStream.pipe(takeUntil(this.onDestory)).subscribe(() => {
@@ -82,8 +79,18 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
 
   ngAfterViewInit() {
     if (this.drawer.opened) {
-      this.correctContentMargin(this.closeWidth);
+      this.correctContentMargin(this.expandedWidth);
+    } else {
+      this.renderer2.setStyle(this.el.nativeElement, 'visibility', 'visible');
+      this.closeMenu();
     }
+  }
+
+  private closeMenu() {
+    this.correctContentMargin(this.closeWidth);
+    const factory = this.builder.build(this.closeAnimation);
+    const player = factory.create(this.el.nativeElement);
+    player.play();
   }
 
   private correctContentMargin(width: string) {
