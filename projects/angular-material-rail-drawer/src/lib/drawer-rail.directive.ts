@@ -1,15 +1,35 @@
-import { forwardRef, Inject, Directive, ElementRef, OnInit, OnDestroy, Host, Self, Optional, Renderer2, Input, AfterViewInit } from '@angular/core';
+import {
+  forwardRef,
+  Inject,
+  Directive,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+  Host,
+  Self,
+  Optional,
+  Renderer2,
+  Input,
+  AfterViewInit,
+} from '@angular/core';
 import { AnimationMetadata, AnimationBuilder } from '@angular/animations';
 
-import { MatSidenav, MatDrawer, MatSidenavContainer, MatDrawerContainer } from '@angular/material/sidenav';
+import {
+  MatSidenav,
+  MatDrawer,
+  MatSidenavContainer,
+  MatDrawerContainer,
+} from '@angular/material/sidenav';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { miniConfig } from './default.config';
-import { sidebarAnimationCloseGroup, sidebarAnimationOpenGroup  } from './animations.settings';
-import {Directionality} from '@angular/cdk/bidi';
-import { inject } from '@angular/core/testing';
+import {
+  sidebarAnimationCloseGroup,
+  sidebarAnimationOpenGroup,
+} from './animations.settings';
+import { Directionality } from '@angular/cdk/bidi';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -17,22 +37,23 @@ import { inject } from '@angular/core/testing';
   // tslint:disable-next-line: no-host-metadata-property
   host: {
     '[class.mat-drawer-side]': 'true',
-  }
+  },
 })
-export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit {
-
+export class MatDrawerRailDirective
+  implements OnInit, OnDestroy, AfterViewInit
+{
   public onDestory: Subject<void> = new Subject();
 
   private drawer: MatSidenav | MatDrawer;
   private container: MatSidenavContainer | MatDrawerContainer;
 
-  private containerContent: HTMLElement;
+  private containerContent?: HTMLElement;
 
   @Input()
-  public openAnimation: AnimationMetadata | AnimationMetadata[];
+  public openAnimation?: AnimationMetadata | AnimationMetadata[];
 
   @Input()
-  public closeAnimation: AnimationMetadata | AnimationMetadata[];
+  public closeAnimation?: AnimationMetadata | AnimationMetadata[];
 
   @Input()
   public closeWidth: string = miniConfig.defaultMinWidth;
@@ -46,10 +67,14 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
     private renderer2: Renderer2,
     @Host() @Self() @Optional() sidenav: MatSidenav,
     @Host() @Self() @Optional() drawer: MatDrawer,
-    @Inject(forwardRef(() => MatSidenavContainer)) @Optional() matSideNavContainer: MatSidenavContainer,
-    @Inject(forwardRef(() => MatDrawerContainer)) @Optional() matDrawerContainer: MatDrawerContainer,
+    @Inject(forwardRef(() => MatSidenavContainer))
+    @Optional()
+    matSideNavContainer: MatSidenavContainer,
+    @Inject(forwardRef(() => MatDrawerContainer))
+    @Optional()
+    matDrawerContainer: MatDrawerContainer,
     // tslint:disable-next-line: variable-name
-    @Optional() private _dir: Directionality,
+    @Optional() private _dir: Directionality
   ) {
     this.container = matSideNavContainer || matDrawerContainer;
     this.drawer = sidenav || drawer;
@@ -58,9 +83,17 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
   }
 
   public ngOnInit(): void {
-    this.closeAnimation = this.closeAnimation || sidebarAnimationCloseGroup(miniConfig.defaultDuration, this.closeWidth);
-    this.openAnimation = this.openAnimation || sidebarAnimationOpenGroup(miniConfig.defaultDuration, this.expandedWidth);
-    this.renderer2.setStyle(this.el.nativeElement.querySelector('.mat-drawer-inner-container'), 'overflow', 'hidden');
+    this.closeAnimation =
+      this.closeAnimation ||
+      sidebarAnimationCloseGroup(miniConfig.defaultDuration, this.closeWidth);
+    this.openAnimation =
+      this.openAnimation ||
+      sidebarAnimationOpenGroup(miniConfig.defaultDuration, this.expandedWidth);
+    this.renderer2.setStyle(
+      this.el.nativeElement.querySelector('.mat-drawer-inner-container'),
+      'overflow',
+      'hidden'
+    );
     this.drawer.closedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
       this.closeMenu();
     });
@@ -70,8 +103,8 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
     });
 
     this.drawer.openedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
-      this.correctContentMargin( this.expandedWidth);
-      const factory = this.builder.build(this.openAnimation);
+      this.correctContentMargin(this.expandedWidth);
+      const factory = this.builder.build(this.openAnimation ?? []);
       const player = factory.create(this.el.nativeElement);
       player.play();
     });
@@ -88,18 +121,27 @@ export class MatDrawerRailDirective implements OnInit, OnDestroy, AfterViewInit 
 
   private closeMenu() {
     this.correctContentMargin(this.closeWidth);
-    const factory = this.builder.build(this.closeAnimation);
+    const factory = this.builder.build(this.closeAnimation ?? []);
     const player = factory.create(this.el.nativeElement);
     player.play();
   }
 
   private correctContentMargin(width: string) {
-    this.containerContent = this.containerContent ? this.containerContent : this.el.nativeElement.parentElement.querySelector('.mat-drawer-content');
-    if ((this.drawer.position !== 'end' && this._dir && this._dir.value !== 'rtl')
-        || (this.drawer.position === 'end' && this._dir && this._dir.value === 'rtl')) {
-      this.renderer2.setStyle(this.containerContent, 'marginLeft',  width);
+    this.containerContent =
+      (this.containerContent
+        ? this.containerContent
+        : this.el.nativeElement?.parentElement?.querySelector(
+            '.mat-drawer-content'
+          )) ?? undefined;
+    if (
+      (this.drawer.position !== 'end' &&
+        this._dir &&
+        this._dir.value !== 'rtl') ||
+      (this.drawer.position === 'end' && this._dir && this._dir.value === 'rtl')
+    ) {
+      this.renderer2.setStyle(this.containerContent, 'marginLeft', width);
     } else {
-      this.renderer2.setStyle(this.containerContent, 'marginRight',  width);
+      this.renderer2.setStyle(this.containerContent, 'marginRight', width);
     }
   }
 
