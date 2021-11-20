@@ -20,6 +20,11 @@ module.ts
 component.html
 `<mat-sidenav mode="rail" opened="true">`
 
+If `"strictTemplates": true` is activated in _tsconfig.json_, overwriting mode is not possible. In this case you can use the following selector:
+
+component.html
+`<mat-sidenav rail-mode opened="true">`
+
 This extension adds on an existing `mode` the Material documentation remains the same.
 
 
