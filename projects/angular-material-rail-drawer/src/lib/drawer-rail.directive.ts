@@ -33,7 +33,7 @@ import { Directionality } from '@angular/cdk/bidi';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: 'mat-sidenav[mode="rail"], mat-drawer[mode="rail"]',
+  selector: 'mat-sidenav[mode="rail"], mat-drawer[mode="rail"], mat-sidenav[rail-mode], mat-drawer[rail-mode]',
   // tslint:disable-next-line: no-host-metadata-property
   host: {
     '[class.mat-drawer-side]': 'true',
