@@ -100,6 +100,7 @@ export class MatDrawerRailDirective
 
     this.drawer._closedStream.pipe(takeUntil(this.onDestory)).subscribe(() => {
       this.renderer2.setStyle(this.el.nativeElement, 'visibility', 'visible');
+      this.renderer2.setStyle(this.el.nativeElement, 'display', 'block');
     });
 
     this.drawer.openedStart.pipe(takeUntil(this.onDestory)).subscribe(() => {
@@ -115,6 +116,7 @@ export class MatDrawerRailDirective
       this.correctContentMargin(this.expandedWidth);
     } else {
       this.renderer2.setStyle(this.el.nativeElement, 'visibility', 'visible');
+      this.renderer2.setStyle(this.el.nativeElement, 'display', 'block');
       this.closeMenu();
     }
   }
