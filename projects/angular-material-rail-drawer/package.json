@@ -7,14 +7,14 @@
     "url": "https://github.com/Jordan-Hall/angular-material-rail-drawer-plugin"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.4.0"
   },
   "peerDependencies": {
-    "@angular/common": ">= 10.0.0 < 14.0.0",
-    "@angular/core": ">= 10.0.0 < 14.0.0",
-    "@angular/animations": ">= 10.0.0 < 14.0.0",
-    "@angular/material": ">= 10.0.0 < 14.0.0",
-    "@angular/cdk": ">= 10.0.0 < 14.0.0",
-    "rxjs": ">= 6.0.0"
+    "@angular/common": ">= 10.0.0 < 15.0.0",
+    "@angular/core": ">= 10.0.0 < 15.0.0",
+    "@angular/animations": ">= 10.0.0 < 15.0.0",
+    "@angular/material": ">= 10.0.0 < 15.0.0",
+    "@angular/cdk": ">= 10.0.0 < 15.0.0",
+    "rxjs": ">= 7.0.0"
   }
 }

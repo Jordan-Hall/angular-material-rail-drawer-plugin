@@ -26,6 +26,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-material-rail-drawer-example app is running!');
+    expect(compiled.querySelector('.container p').textContent).toContain('Since 2016, the Angular community has been shouting out');
   });
 });
