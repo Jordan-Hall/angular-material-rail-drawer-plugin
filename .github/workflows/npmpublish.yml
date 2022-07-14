@@ -11,8 +11,8 @@ jobs:
         with:
           node-version: 12
       - run: npm ci
-      - run: npm build angular-material-rail-drawer-example
-      - run: npm build angular-material-rail-drawer
+      - run: npm run build angular-material-rail-drawer-example
+      - run: npm run build angular-material-rail-drawer
 
   publish-npm:
     needs: build
