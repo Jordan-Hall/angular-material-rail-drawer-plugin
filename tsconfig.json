@@ -18,8 +18,7 @@
     ],
     "paths": {
       "angular-material-rail-drawer": [
-        "dist/angular-material-rail-drawer/angular-material-rail-drawer",
-        "dist/angular-material-rail-drawer"
+        "projects/angular-material-rail-drawer/src/public-api.ts"
       ]
     }
   },
