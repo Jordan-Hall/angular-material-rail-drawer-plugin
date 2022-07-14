@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn
+      - run: npm ci
       - run: npm build angular-material-rail-drawer-example
       - run: npm build angular-material-rail-drawer
 
@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+      - run: npm ci
       - run: cd dist\angular-material-rail-drawer
       - run: npm publish
         env:
@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-      - run: yarn
+      - run: npm ci
       - run: cd dist\angular-material-rail-drawer
       - run: npm publish
         env:
