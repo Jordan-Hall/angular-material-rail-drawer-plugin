@@ -11,15 +11,14 @@
     "module": "es2020",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2020",
     "lib": [
       "es2018",
       "dom"
     ],
     "paths": {
       "angular-material-rail-drawer": [
-        "dist/angular-material-rail-drawer/angular-material-rail-drawer",
-        "dist/angular-material-rail-drawer"
+        "projects/angular-material-rail-drawer/src/public-api.ts"
       ]
     }
   },

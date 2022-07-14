@@ -152,6 +152,6 @@
           "defaultConfiguration": "development"
         }
       }
-    }},
-  "defaultProject": "angular-material-rail-drawer"
+    }
+  }
 }
