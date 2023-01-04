@@ -2,13 +2,6 @@
   "affected": {
     "defaultBase": "master"
   },
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*"
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
@@ -26,11 +19,37 @@
     "build": {
       "dependsOn": [
         "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
+    },
+    "test": {
+      "inputs": [
+        "default",
+        "^production"
       ]
     }
   },
   "workspaceLayout": {
     "appsDir": "projects",
     "libsDir": "projects"
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/karma.conf.js"
+    ]
+  },
+  "cli": {
+    "packageManager": "npm"
   }
 }

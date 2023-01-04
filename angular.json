@@ -104,8 +104,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-          },
+          "options": {},
           "configurations": {
             "production": {
               "browserTarget": "angular-material-rail-drawer-example:build:production"
