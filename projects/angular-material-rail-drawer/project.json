@@ -1,0 +1,30 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "projects/angular-material-rail-drawer/src",
+  "prefix": "lib",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "tsConfig": "projects/angular-material-rail-drawer/tsconfig.lib.json",
+        "project": "projects/angular-material-rail-drawer/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/angular-material-rail-drawer/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "projects/angular-material-rail-drawer/src/test.ts",
+        "tsConfig": "projects/angular-material-rail-drawer/tsconfig.spec.json",
+        "karmaConfig": "projects/angular-material-rail-drawer/karma.conf.js"
+      }
+    }
+  }
+}
