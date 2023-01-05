@@ -1,0 +1,115 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "examples/material-rail-drawer/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/angular-material-rail-drawer-example",
+        "index": "examples/material-rail-drawer/src/index.html",
+        "main": "examples/material-rail-drawer/src/main.ts",
+        "polyfills": "examples/material-rail-drawer/src/polyfills.ts",
+        "tsConfig": "examples/material-rail-drawer/tsconfig.app.json",
+        "assets": [
+          "examples/material-rail-drawer/src/favicon.ico",
+          "examples/material-rail-drawer/src/assets"
+        ],
+        "styles": ["examples/material-rail-drawer/src/styles.scss"],
+        "scripts": [],
+        "vendorChunk": true,
+        "extractLicenses": false,
+        "buildOptimizer": false,
+        "sourceMap": true,
+        "optimization": false,
+        "namedChunks": true
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "examples/material-rail-drawer/src/environments/environment.ts",
+              "with": "examples/material-rail-drawer/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ]
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {},
+      "configurations": {
+        "production": {
+          "browserTarget": "material-rail-drawer:build:production"
+        },
+        "development": {
+          "browserTarget": "material-rail-drawer:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "material-rail-drawer:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "examples/material-rail-drawer/src/test.ts",
+        "polyfills": "examples/material-rail-drawer/src/polyfills.ts",
+        "tsConfig": "examples/material-rail-drawer/tsconfig.spec.json",
+        "karmaConfig": "examples/material-rail-drawer/karma.conf.js",
+        "assets": [
+          "examples/material-rail-drawer/src/favicon.ico",
+          "examples/material-rail-drawer/src/assets"
+        ],
+        "styles": ["examples/material-rail-drawer/src/styles.scss"],
+        "scripts": []
+      }
+    },
+    "e2e": {
+      "executor": "@angular-devkit/build-angular:protractor",
+      "options": {
+        "protractorConfig": "examples/material-rail-drawer/e2e/protractor.conf.js"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "material-rail-drawer:serve:production"
+        },
+        "development": {
+          "devServerTarget": "material-rail-drawer:serve:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    }
+  }
+}
