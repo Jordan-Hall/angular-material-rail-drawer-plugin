@@ -1,29 +1,49 @@
 {
+  "name": "angular-material-rail-drawer",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
   "sourceRoot": "projects/angular-material-rail-drawer/src",
   "prefix": "lib",
+  "tags": [],
+  "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "tsConfig": "projects/angular-material-rail-drawer/tsconfig.lib.json",
         "project": "projects/angular-material-rail-drawer/ng-package.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "projects/angular-material-rail-drawer/tsconfig.lib.prod.json"
         },
-        "development": {}
+        "development": {
+          "tsConfig": "projects/angular-material-rail-drawer/tsconfig.lib.json"
+        }
       },
       "defaultConfiguration": "production"
     },
     "test": {
-      "executor": "@angular-devkit/build-angular:karma",
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "main": "projects/angular-material-rail-drawer/src/test.ts",
-        "tsConfig": "projects/angular-material-rail-drawer/tsconfig.spec.json",
-        "karmaConfig": "projects/angular-material-rail-drawer/karma.conf.js"
+        "jestConfig": "projects/angular-material-rail-drawer/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "projects/angular-material-rail-drawer/**/*.ts",
+          "projects/angular-material-rail-drawer/**/*.html"
+        ]
       }
     }
   }
