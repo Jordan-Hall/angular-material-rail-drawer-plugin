@@ -1,19 +1,21 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/spec",
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "target": "es2022",
     "types": [
-      "jasmine",
+      "jest",
       "node"
-    ],
-    "target": "ES2022",
-    "useDefineForClassFields": false
+    ]
   },
   "files": [
-    "src/test.ts"
+    "src/test-setup.ts"
   ],
   "include": [
-    "**/*.spec.ts",
-    "**/*.d.ts"
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
   ]
 }

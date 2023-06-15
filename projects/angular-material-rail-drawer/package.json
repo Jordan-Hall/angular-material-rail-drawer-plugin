@@ -1,6 +1,6 @@
 {
   "name": "angular-material-rail-drawer",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "homepage": "https://medium.com/@LostDeveloper/angular-material-navigation-drawer-adding-support-mode-rail-mini-variant-behaviour-8f7b107700b3",
   "repository": {
     "type": "git",
@@ -10,11 +10,11 @@
     "tslib": "^2.4.0"
   },
   "peerDependencies": {
-    "@angular/common": ">= 10.0.0 < 16.0.0",
-    "@angular/core": ">= 10.0.0 < 16.0.0",
-    "@angular/animations": ">= 10.0.0 < 16.0.0",
-    "@angular/material": ">= 10.0.0 < 16.0.0",
-    "@angular/cdk": ">= 10.0.0 < 16.0.0",
-    "rxjs": ">= 7.0.0"
-  }
+    "@angular/common": ">=12.0.0 <17.0.0",
+    "@angular/core": ">=12.0.0 <17.0.0",
+    "@angular/animations": ">=12.0.0 <17.0.0",
+    "@angular/cdk": ">=12.0.0 <17.0.0",
+    "rxjs": ">=6.5.5"
+  },
+  "sideEffects": false
 }

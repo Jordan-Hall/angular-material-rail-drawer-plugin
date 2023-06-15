@@ -12,6 +12,7 @@ Yarn:
 `yarn add angular-material-rail-drawer`
 
 ## How to use
+
 Read example for more information
 
 module.ts
