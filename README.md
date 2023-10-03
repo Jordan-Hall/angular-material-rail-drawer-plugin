@@ -1,3 +1,29 @@
+# ⚠️ DEPRECATION NOTICE ⚠️
+
+**Package Name:** [angular-material-rail-drawer](https://npmjs.com/package/angular-material-rail-drawer)
+
+---
+
+### 🚫 Reasons for Discontinuation:
+
+1. **Legacy Support Only:** This package is designed to work only with Material Legacy (pre-version 17).
+2. **No Support for Angular V17:** There are little to no plans to support Angular V17. The new syntax of Angular V17 is not favored, and it's believed that the changes are detrimental to the framework.
+
+---
+
+### 📣 Personal Note:
+
+I personally dislike the new syntax introduced in Angular V17. I believe the direction Angular is taking with this version is not in the best interest of the framework. As a result, I have decided not to continue supporting or maintaining this package.
+
+---
+
+### 📌 Recommendations:
+
+- If you are using an older version of Angular (pre-version 17), you may continue using this package. However, be aware that no further updates or support will be provided.
+- For projects using Angular V17 and above, it's recommended to look for alternative packages or solutions.
+
+---
+
 # Angular Material Rail Drawer Plugin
 
 Angular Material Navigation drawer — Adding support mode = “Rail” (mini variant behaviour)
@@ -39,7 +65,7 @@ On top of all the standard Drawer API from google https://material.angular.io/co
 | closeWidth     |         min width (small view)         |         "60px"         |
 | expandedWidth  |    max width for the expanded view     |        "200px"         |
 
-extra note the default anmination time is set to 100ms
+extra note the default animation time is set to 100ms
 
 _Notes:_
 Angular material open state
